@@ -1,0 +1,54 @@
+/* AppLayout header — komunikační ikona (nevyřízené zprávy).
+   Pulsování je decentní a respektuje prefers-reduced-motion. */
+
+.comm-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  transition: background-color 120ms ease;
+}
+
+.comm-btn:hover {
+  background-color: #F3F4F6;
+}
+
+/* Aktivní stav = existuje nevyřízená komunikace (jinak se prvek nerenderuje). */
+.comm-btn.has-unread {
+  cursor: pointer;
+}
+
+/* Ikona obálky — vystředěná v tlačítku. */
+.comm-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Souvislé decentní pulzování — drží pozornost, dokud je nevyřízená komunikace. */
+.comm-btn.has-unread .comm-icon {
+  animation: comm-pulse 1.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes comm-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .comm-btn.has-unread .comm-icon {
+    animation: none;
+  }
+}

@@ -1,0 +1,4 @@
+# Lokální vývoj — zkopíruj jako .dev.vars (necommituje se).
+# Bypass Cloudflare Access ověření: požadavky běží pod tímto e-mailem.
+# Technik s tímto e-mailem musí existovat v lokální D1 (seed).
+DEV_USER_EMAIL=petr.salek@ccdent.cz

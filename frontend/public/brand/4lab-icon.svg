@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <!-- 4lab — ikona: bílý zaoblený čtverec, 4 dlaždice (lime + černá), pinwheel -->
+  <rect x="0" y="0" width="96" height="96" rx="22" fill="#FFFFFF"/>
+  <!-- TL lime — velké kulaté levé horní „lístkové" rohy -->
+  <path d="M46 16 L46 44 L18 44 L18 34 Q18 16 36 16 Z" fill="#C6F135"/>
+  <!-- TR černá — svislá dlaždice výš -->
+  <rect x="50" y="13" width="28" height="31" rx="9" fill="#161616"/>
+  <!-- BL černá — velký kulatý levý dolní roh -->
+  <path d="M18 48 L46 48 L46 76 L36 76 Q18 76 18 58 Z" fill="#161616"/>
+  <!-- BR lime — svislá dlaždice níž -->
+  <rect x="50" y="48" width="28" height="35" rx="9" fill="#C6F135"/>
+</svg>

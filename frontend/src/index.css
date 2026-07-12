@@ -1,0 +1,51 @@
+/* Minimal global resets – layout handled by Mantine */
+html {
+  /* Always reserve the scrollbar gutter so short pages (e.g. /login) and
+     long pages (e.g. /) don't shift the centered header by ~15px when the
+     scrollbar appears/disappears. */
+  overflow-y: scroll;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Teal focus ring for all Mantine inputs (TextInput, Select, Textarea, NumberInput) */
+.mantine-Input-input:focus {
+  border-color: var(--mantine-color-teal-5) !important;
+  box-shadow: 0 0 0 2px var(--mantine-color-teal-1);
+  outline: none;
+}
+
+/* Mobil (pod Mantine `sm` = 48em): datové tabulky (DataTable) se posouvají
+   horizontálně místo mačkání/překrývání sloupců. Desktop beze změny —
+   media query se neaplikuje a min-width tabulky se neuplatní. */
+@media (max-width: 47.99em) {
+  .datatable-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .datatable-scroll table {
+    min-width: 640px;
+  }
+}
+
+
+/* Aktivní filtr-chip: lime podklad, černý tučný text (brand identita). */
+.mantine-Chip-label[data-checked] {
+  background-color: #c6f135 !important;
+  color: #161616 !important;
+  font-weight: 700;
+}
+.mantine-Chip-label[data-checked] .mantine-Chip-iconWrapper,
+.mantine-Chip-label[data-checked] svg {
+  color: #161616;
+}

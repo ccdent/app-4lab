@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="110" viewBox="0 0 380 110">
+  <!-- 4lab — lockup: ikona + wordmark (nová identita: lime + černá) -->
+  <g transform="translate(7 7)">
+    <rect x="0" y="0" width="96" height="96" rx="22" fill="#FFFFFF" stroke="#EBEBEB" stroke-width="1"/>
+    <path d="M46 16 L46 44 L18 44 L18 34 Q18 16 36 16 Z" fill="#C6F135"/>
+    <rect x="50" y="13" width="28" height="31" rx="9" fill="#161616"/>
+    <path d="M18 48 L46 48 L46 76 L36 76 Q18 76 18 58 Z" fill="#161616"/>
+    <rect x="50" y="48" width="28" height="35" rx="9" fill="#C6F135"/>
+  </g>
+  <text x="128" y="78" font-family="'JetBrains Mono','Fira Code','Consolas',monospace" font-size="58" font-weight="700" letter-spacing="-2" fill="#161616">4lab</text>
+</svg>

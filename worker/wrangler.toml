@@ -1,0 +1,68 @@
+# API Worker pro app.4lab.cz
+# Lokální vývoj: `npm run dev` (D1 + R2 běží lokálně v miniflare).
+# Deploy: `npm run deploy` — POZOR, database_id a route se doplní až po
+# vytvoření D1/R2/DNS v Cloudflare dashboardu (viz docs/deployment.md).
+
+name = "app-4lab-api"
+main = "src/index.ts"
+compatibility_date = "2026-07-01"
+
+routes = [
+  { pattern = "app.4lab.cz/api/*", zone_name = "4lab.cz" }
+]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "app-4lab-db"
+database_id = "6d75ee2b-f251-479c-9365-e19b385669de"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "ATTACHMENTS"
+bucket_name = "app-4lab-attachments"
+
+[vars]
+# Cloudflare Access — team domain a AUD tag aplikace (doplní se po vytvoření
+# Access aplikace v Zero Trust dashboardu).
+ACCESS_TEAM_DOMAIN = "4lab.cloudflareaccess.com"
+ACCESS_AUD = "5f991746be50af395c03824736865e4fec7bc42379546ae5e8926ac8fb830229"
+# DEV_USER_EMAIL se NIKDY nenastavuje tady (produkce) — jen v .dev.vars
+# pro lokální vývoj (bypass Access ověření).
+# Sync Access policy při založení/deaktivaci technika (lib/accessSync.ts);
+# ACCESS_SYNC_TOKEN je worker secret (wrangler secret put), NE var.
+CF_ACCOUNT_ID = "3d6e1a6d99a00b23843b3c1a7f7093c4"
+ACCESS_APP_ID = "d68f1efa-f97e-46ef-bc59-4f49ae502b81"
+ACCESS_POLICY_ID = "059bb76c-38d1-4fdf-9fa2-37922ba779b3"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Veřejné demo — demo.4lab.cz (BEZ Cloudflare Access, vlastní D1, bez R2).
+# Sdílená identita demo@4lab.cz, limity v src/demo/guard.ts, noční reset+seed
+# (cron) v src/demo/seed.ts. Deploy: `npx wrangler deploy --env demo`.
+# ─────────────────────────────────────────────────────────────────────────────
+[env.demo]
+name = "app-4lab-demo"
+
+routes = [
+  { pattern = "demo.4lab.cz/api/*", zone_name = "4lab.cz" },
+  { pattern = "demo.4lab.cz/", zone_name = "4lab.cz" }
+]
+
+[env.demo.vars]
+DEMO_MODE = "1"
+# Access se v demu nepoužívá (identita je pevná), ale Env je vyžaduje:
+ACCESS_TEAM_DOMAIN = ""
+ACCESS_AUD = ""
+
+# Ukázkové přílohy (jen ke čtení — guard blokuje upload i mazání).
+[[env.demo.r2_buckets]]
+binding = "ATTACHMENTS"
+bucket_name = "app-4lab-demo-attachments"
+
+[[env.demo.d1_databases]]
+binding = "DB"
+database_name = "app-4lab-demo-db"
+database_id = "f0a0864a-9075-4156-93c4-aaaec0c987bb"
+migrations_dir = "migrations"
+
+[env.demo.triggers]
+crons = ["0 2 * * *"]
